@@ -28,3 +28,13 @@ func TestRunPrintsSanitizedSummary(t *testing.T) {
 		t.Fatal("summary exposed an item ID")
 	}
 }
+
+func TestRunKeepsInvalidFixtureErrorGeneric(t *testing.T) {
+	var stdout, stderr bytes.Buffer
+	if code := run([]string{"/private/path/controller-export.json"}, &stdout, &stderr); code != 1 {
+		t.Fatalf("run returned %d", code)
+	}
+	if stdout.Len() != 0 || stderr.String() != "snapshot-inspect: invalid fixture\n" {
+		t.Fatalf("unexpected output: stdout=%q stderr=%q", stdout.String(), stderr.String())
+	}
+}

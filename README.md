@@ -12,7 +12,9 @@ This first foundation slice defines a normalized, versioned snapshot and validat
 - Wi-Fi broadcasts and firewall policies
 - ACL rules and policy references
 
-Every section has a `complete`, `partial`, or `unavailable` status. Partial and unavailable sections require one or more bounded diagnostic codes. The strict fixture loader rejects unknown fields, unsupported versions, invalid statuses or diagnostics, duplicate IDs, and broken normalized references.
+Every section has a `complete`, `partial`, or `unavailable` status and an explicit non-null `items` array. Complete sections have no diagnostics. Partial and unavailable sections require unique, bounded diagnostic codes, and unavailable sections have an empty `items` array. A missing reference is rejected when its target section is complete; it is tolerated when that section is partial or unavailable because its diagnostics record the uncertainty.
+
+The strict, size-bounded fixture loader rejects duplicate JSON keys at any depth before decoding. Returned errors contain only stable categories and hard-coded section context; they never echo fixture values, identifiers, JSON keys, decoder text, or file paths.
 
 The repository contains synthetic fixtures only. Their identifiers are invented placeholders and contain no controller/site identifiers, addresses, credentials, personal device names, private topology, or production output.
 
