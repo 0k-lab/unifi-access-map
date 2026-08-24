@@ -1,0 +1,19 @@
+{
+  "schema_version": "v1",
+  "networks": {"status": "complete", "items": [{"id": "synthetic-network-01"}]},
+  "firewall_zones": {"status": "complete", "items": []},
+  "adopted_devices": {"status": "complete", "items": []},
+  "active_clients": {
+    "status": "partial",
+    "diagnostics": ["incomplete_response"],
+    "items": [{"id": "synthetic-client-01", "network_id": "synthetic-network-01"}]
+  },
+  "wifi_broadcasts": {
+    "status": "unavailable",
+    "diagnostics": ["endpoint_unsupported"],
+    "items": []
+  },
+  "firewall_policies": {"status": "complete", "items": []},
+  "acl_rules": {"status": "complete", "items": []},
+  "policy_references": {"status": "complete", "items": []}
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "v1",
+  "networks": {
+    "status": "complete",
+    "items": [{"id": "synthetic-network-01"}]
+  },
+  "firewall_zones": {
+    "status": "complete",
+    "items": [
+      {"id": "synthetic-zone-01", "network_ids": ["synthetic-network-01"]},
+      {"id": "synthetic-zone-02", "network_ids": []}
+    ]
+  },
+  "adopted_devices": {
+    "status": "complete",
+    "items": [{"id": "synthetic-device-01", "network_id": "synthetic-network-01"}]
+  },
+  "active_clients": {
+    "status": "complete",
+    "items": [{"id": "synthetic-client-01", "network_id": "synthetic-network-01", "device_id": "synthetic-device-01"}]
+  },
+  "wifi_broadcasts": {
+    "status": "complete",
+    "items": [{"id": "synthetic-broadcast-01", "network_id": "synthetic-network-01"}]
+  },
+  "firewall_policies": {
+    "status": "complete",
+    "items": [{"id": "synthetic-policy-01", "source_zone_id": "synthetic-zone-01", "destination_zone_id": "synthetic-zone-02"}]
+  },
+  "acl_rules": {
+    "status": "complete",
+    "items": [{"id": "synthetic-rule-01", "network_id": "synthetic-network-01"}]
+  },
+  "policy_references": {
+    "status": "complete",
+    "items": [{"id": "synthetic-reference-01", "policy_id": "synthetic-policy-01", "acl_rule_id": "synthetic-rule-01"}]
+  }
+}
