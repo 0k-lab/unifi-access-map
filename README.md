@@ -18,6 +18,14 @@ The strict, size-bounded fixture loader rejects duplicate JSON keys at any depth
 
 The repository contains synthetic fixtures only. Their identifiers are invented placeholders and contain no controller/site identifiers, addresses, credentials, personal device names, private topology, or production output.
 
+## Access graph projection
+
+`accessgraph.Project(s)` in `internal/accessgraph` validates a `snapshot.Snapshot` and returns a graph plus an error. The graph contains typed nodes for networks, firewall zones, adopted devices, active clients, Wi-Fi broadcasts, firewall policies, and ACL rules. Node identity is the pair `(kind, ID)`.
+
+Directed, typed edges represent only explicit snapshot references: zone/device/client/Wi-Fi/ACL to network, client to device, policy to source or destination zone, and policy to ACL through policy references. Both endpoints must exist; missing endpoints tolerated by incomplete sections produce no edge or placeholder node. Repeated relationships collapse to one edge. These references do not calculate effective access or discover live topology.
+
+Nodes sort by kind then ID; edges sort by kind, source kind/ID, then target kind/ID. `IncompleteSections` lists all partial or unavailable source sections (including policy references) in lexical order. Empty lists serialize as `[]`. Projection leaves the snapshot unchanged, and equivalent item/reference orderings produce byte-for-byte identical JSON when marshaled with `encoding/json`.
+
 ## Inspect a fixture
 
 ```sh
